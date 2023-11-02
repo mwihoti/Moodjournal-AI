@@ -15,12 +15,28 @@ model User {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
+  account   Account?
+   name      String?
   clerkId String         @unique
   email   String         @unique
   entries JournalEntry[]
   analyses Analysis[]
 }
+model Account {
+  id               String @id @default(uuid())
+  userId           String
+  user             User   @relation(fields: [userId], references: [id])
+  // stripeCustomerId String @unique
+
+  @@unique([userId])
+}
+
+enum JOURNAL_ENTRY_STATUS {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
 
 
 
