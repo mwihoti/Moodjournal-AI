@@ -22,6 +22,8 @@ model User {
   analyses Analysis[]
 }
 
+
+
 model JournalEntry {
   id        String   @id @default(uuid())
   createdAt DateTime @default(now())
